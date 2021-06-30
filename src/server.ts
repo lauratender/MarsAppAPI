@@ -7,19 +7,31 @@ const port = 8000;
  
 app.use(express.json());
 
-// Part 2
+// Part 3
 
-// 1. We can retrieve the list of rovers from
-// https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=API_KEY
+// 1
+enum Cameras {
+  fhaz = 0,
+  rhaz,
+  mast,
+  chemcam,
+  mahli,
+  mardi,
+  navcam,
+  pancam,
+  minites,
+}
 
-// 2 create GET endpoint for the rovers
+// 2
+const camera_type: string = Cameras[0];
+const rover_name: string = "Curiosity";
 
 const router = express.Router();
 
-router.get('/rovers', function (req, res) {
+router.get('/rovers/photos', function (req, res) {
 
-  console.log("Getting rovers ...");
-  const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${API_KEY}`;
+  console.log(`Getting photos made with ${camera_type.toUpperCase()} from rover ${rover_name} ...`);
+  const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover_name}/photos?sol=1000&camera=${camera_type}&api_key=${API_KEY}`;
 
   axios.get(URL)
   .then((response) => {
@@ -38,4 +50,4 @@ app.listen(port, () => {
   console.log(`Test backend is running on port ${port}`);
 });
 
-// 3 At "http://localhost:8000/rovers" we can see the JSON with information about rovers
+// 3 At "http://localhost:8000/rovers/photos" we can see the JSON with information about rovers' photos
