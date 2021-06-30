@@ -1,6 +1,6 @@
 import express, { Express } from "express";
-import axios from 'axios';
-import {API_KEY} from "./info";
+import axios from "axios";
+import { API_KEY } from "./info";
  
 const app = express();
 const port = 8000;
@@ -16,14 +16,14 @@ app.use(express.json());
 
 const router = express.Router();
 
-router.get('/rovers', function (req, res) {
+router.get("/rovers", function (req, res) {
 
   console.log("Getting rovers ...");
   const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${API_KEY}`;
 
   axios.get(URL)
   .then((response) => {
-    let result = response.data;
+    const result = response.data;
     res.send(result);
   })
   .catch(error => {
@@ -32,7 +32,7 @@ router.get('/rovers', function (req, res) {
 
 });
 
-app.use('/', router);
+app.use("/", router);
 
 app.listen(port, () => {
   console.log(`Test backend is running on port ${port}`);
