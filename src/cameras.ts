@@ -1,3 +1,18 @@
+export interface Camera {
+    id: number;
+    name: string;
+    rover_id: number;
+    full_name: string;
+}
+
+export interface Rover {
+    id: number;
+    name: string;
+    landing_date: string;
+    launch_date: string;
+    status: string;
+}
+
 export function checkCameraType (cameraType: string): void {
     if (!(cameraType.toLowerCase() in Cameras)){
         throw "Invalid camera type.";
