@@ -13,3 +13,5 @@ app.use('/', router);
 app.listen(port, () => {
   console.log(`Test backend is running on port ${port}`);
 });
+
+/* Now we can see "Hello world !" at http://localhost:8000/test */
