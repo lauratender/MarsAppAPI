@@ -24,7 +24,6 @@ router.get('/rovers', function (req, res) {
   axios.get(URL)
   .then((response) => {
     let result = response.data;
-    console.log(result);
     res.send(result);
   })
   .catch(error => {
